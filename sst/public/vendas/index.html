@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiFlow — Proposta Comercial</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --ink: #0d1117;
+            --s1: #fff;
+            --s2: #f5f4f0;
+            --border: #e4dfd6;
+            --border2: #ccc7be;
+            --text: #1a2030;
+            --muted: #6b7280;
+            --muted2: #94a3b8;
+            --sst: #16a34a;
+            --sstl: rgba(22, 163, 74, .09);
+            --sstm: rgba(22, 163, 74, .2);
+            --civil: #2563eb;
+            --civill: rgba(37, 99, 235, .09);
+            --civilm: rgba(37, 99, 235, .2);
+            --elet: #d97706;
+            --eletl: rgba(217, 119, 6, .09);
+            --eletm: rgba(217, 119, 6, .2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.7
+        }
+
+        /* COVER */
+        .cover {
+            background: var(--ink);
+            padding: 48px 22px 44px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            right: -80px;
+            width: 320px;
+            height: 320px;
+            background: conic-gradient(from 200deg at 70% 70%, rgba(22, 163, 74, .12) 0deg, rgba(37, 99, 235, .08) 120deg, rgba(217, 119, 6, .10) 240deg, transparent 360deg);
+            border-radius: 50%;
+            filter: blur(50px)
+        }
+
+        .cv-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 1
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .brand-ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px
+        }
+
+        .brand-nm {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.5px
+        }
+
+        .brand-nm em {
+            font-style: normal;
+            background: linear-gradient(90deg, #4ade80, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .cv-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, .3);
+            border: 1px solid rgba(255, 255, 255, .1);
+            padding: 5px 10px;
+            border-radius: 3px
+        }
+
+        .cv-kicker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1
+        }
+
+        .kd {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #4ade80
+        }
+
+        .kt {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: #4ade80;
+            text-transform: uppercase
+        }
+
+        .cv-h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .cv-h1 .dim {
+            color: rgba(255, 255, 255, .25)
+        }
+
+        .cv-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.65;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300
+        }
+
+        .spec-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1
+        }
+
+        .sp {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid;
+            font-size: 12px;
+            font-weight: 500
+        }
+
+        .sp .sd {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: currentColor
+        }
+
+        .sp.sst {
+            border-color: rgba(74, 222, 128, .4);
+            color: #4ade80;
+            background: rgba(74, 222, 128, .07)
+        }
+
+        .sp.civil {
+            border-color: rgba(96, 165, 250, .4);
+            color: #60a5fa;
+            background: rgba(96, 165, 250, .07)
+        }
+
+        .sp.elet {
+            border-color: rgba(251, 191, 36, .4);
+            color: #fbbf24;
+            background: rgba(251, 191, 36, .07)
+        }
+
+        /* PAGE */
+        .pg {
+            padding: 36px 20px
+        }
+
+        .sh {
+            margin-bottom: 28px
+        }
+
+        .sh-num {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            background: var(--s2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            margin-bottom: 10px
+        }
+
+        .sh h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            color: var(--ink)
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 28px;
+            font-size: 14px;
+            line-height: 1.8
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 44px 0
+        }
+
+        /* PAIN CARDS */
+        .pain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .pain-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid
+        }
+
+        .pain-card.crit {
+            border-left-color: #ef4444
+        }
+
+        .pain-card.high {
+            border-left-color: #f59e0b
+        }
+
+        .pain-sev {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 7px
+        }
+
+        .crit .pain-sev {
+            color: #ef4444
+        }
+
+        .high .pain-sev {
+            color: #f59e0b
+        }
+
+        .pain-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--ink)
+        }
+
+        .pain-card p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 10px
+        }
+
+        .pain-impact {
+            font-size: 12px;
+            color: #ef4444;
+            font-weight: 500
+        }
+
+        .high .pain-impact {
+            color: #f59e0b
+        }
+
+        /* STATEMENT */
+        .stmt {
+            background: var(--ink);
+            border-radius: 14px;
+            padding: 36px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .stmt::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 100%, rgba(74, 222, 128, .1) 0%, transparent 60%)
+        }
+
+        .stmt .ey {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #4ade80;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1
+        }
+
+        .stmt h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.5px;
+            line-height: 1.15;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1
+        }
+
+        .stmt h2 .g {
+            color: #4ade80
+        }
+
+        .stmt h2 .b {
+            color: #60a5fa
+        }
+
+        .stmt h2 .y {
+            color: #fbbf24
+        }
+
+        .stmt p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+            font-weight: 300
+        }
+
+        /* NAME BOX */
+        .name-box {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 20px;
+            text-align: center;
+            margin-bottom: 20px
+        }
+
+        .nb-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+            color: var(--ink);
+            margin-bottom: 10px
+        }
+
+        .nb-name em {
+            font-style: normal;
+            background: linear-gradient(90deg, #16a34a, #2563eb, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .nb-sub {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        /* SPEC SECTIONS */
+        .spec-sec {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 16px
+        }
+
+        .spec-hd {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px
+        }
+
+        .spec-ic {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0
+        }
+
+        .spec-ic.sst {
+            background: var(--sstl);
+            border: 1px solid var(--sstm)
+        }
+
+        .spec-ic.civil {
+            background: var(--civill);
+            border: 1px solid var(--civilm)
+        }
+
+        .spec-ic.elet {
+            background: var(--eletl);
+            border: 1px solid var(--eletm)
+        }
+
+        .spec-meta {
+            flex: 1
+        }
+
+        .spec-tag-lbl {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 3px
+        }
+
+        .sst-sec .spec-tag-lbl {
+            color: var(--sst)
+        }
+
+        .civil-sec .spec-tag-lbl {
+            color: var(--civil)
+        }
+
+        .elet-sec .spec-tag-lbl {
+            color: var(--elet)
+        }
+
+        .spec-hd h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.3
+        }
+
+        .spec-bdy {
+            padding: 18px 20px
+        }
+
+        /* FLOW PILLS — horizontal scroll */
+        .flow-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 8px;
+            margin-bottom: 18px
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            width: max-content
+        }
+
+        .fp {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 7px 13px;
+            border-radius: 5px;
+            border: 1px solid;
+            white-space: nowrap
+        }
+
+        .fp.sst {
+            color: var(--sst);
+            border-color: var(--sstm);
+            background: var(--sstl)
+        }
+
+        .fp.civil {
+            color: var(--civil);
+            border-color: var(--civilm);
+            background: var(--civill)
+        }
+
+        .fp.elet {
+            color: var(--elet);
+            border-color: var(--eletm);
+            background: var(--eletl)
+        }
+
+        .fa {
+            color: var(--muted2);
+            padding: 0 7px;
+            font-size: 14px
+        }
+
+        /* FEATURES LIST */
+        .feat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .feat-item {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start
+        }
+
+        .feat-item::before {
+            content: '✓';
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 1px
+        }
+
+        .sst-sec .feat-item::before {
+            color: var(--sst)
+        }
+
+        .civil-sec .feat-item::before {
+            color: var(--civil)
+        }
+
+        .elet-sec .feat-item::before {
+            color: var(--elet)
+        }
+
+        /* CORE GRID */
+        .core-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .core-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 16px
+        }
+
+        .core-card .ci {
+            font-size: 26px;
+            margin-bottom: 9px
+        }
+
+        .core-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px
+        }
+
+        .core-card p {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.55
+        }
+
+        /* DIFF */
+        .diff-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .diff-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px
+        }
+
+        .diff-n {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--border2);
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 6px
+        }
+
+        .diff-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 7px
+        }
+
+        .diff-card p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.65
+        }
+
+        /* BEFORE / AFTER */
+        .ba-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .ba-col {
+            border-radius: 12px;
+            padding: 22px 18px
+        }
+
+        .ba-col.before {
+            background: #fef2f2;
+            border: 1px solid #fecaca
+        }
+
+        .ba-col.after {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0
+        }
+
+        .ba-col h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            margin-bottom: 14px
+        }
+
+        .before h3 {
+            color: #dc2626
+        }
+
+        .after h3 {
+            color: #16a34a
+        }
+
+        .ba-col ul {
+            list-style: none;
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .ba-col ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .06);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            line-height: 1.5
+        }
+
+        .ba-col ul li:last-child {
+            border-bottom: none
+        }
+
+        .before ul li::before {
+            content: '✕';
+            color: #dc2626;
+            flex-shrink: 0;
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        .after ul li::before {
+            content: '✓';
+            color: #16a34a;
+            flex-shrink: 0;
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        /* ROI */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .roi-item {
+            background: var(--sst);
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+            color: #fff
+        }
+
+        .roi-item:nth-child(2) {
+            background: #145c31
+        }
+
+        .roi-item:nth-child(3) {
+            background: #0e4223
+        }
+
+        .roi-item:nth-child(4) {
+            background: #0a3019
+        }
+
+        .roi-n {
+            font-family: 'Syne', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 7px
+        }
+
+        .roi-lbl {
+            font-size: 11px;
+            opacity: .8;
+            line-height: 1.4
+        }
+
+        /* SCRIPT */
+        .script-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .sc {
+            background: var(--ink);
+            border-radius: 12px;
+            padding: 24px 20px
+        }
+
+        .sc-moment {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            color: #4ade80;
+            margin-bottom: 10px
+        }
+
+        .sc p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .82);
+            line-height: 1.75;
+            font-style: italic
+        }
+
+        .sc p strong {
+            color: #fff;
+            font-style: normal
+        }
+
+        .close-box {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 20px;
+            margin-top: 12px
+        }
+
+        .close-lbl {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--muted2);
+            margin-bottom: 14px
+        }
+
+        .close-box blockquote {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.3;
+            letter-spacing: -.5px;
+            border-left: 4px solid var(--sst);
+            padding-left: 20px;
+            margin-bottom: 14px
+        }
+
+        .close-box blockquote span {
+            color: var(--sst)
+        }
+
+        .close-box p {
+            font-size: 12px;
+            color: var(--muted);
+            padding-left: 24px;
+            line-height: 1.6
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted2);
+            text-align: center;
+            line-height: 1.8;
+            letter-spacing: 1px
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cv-top">
+            <div class="brand">
+                <div class="brand-ic">⚙️</div>
+                <div class="brand-nm">Engi<em>Flow</em></div>
+            </div>
+            <div class="cv-badge">PROPOSTA</div>
+        </div>
+        <div class="cv-kicker">
+            <div class="kd"></div>
+            <div class="kt">Plataforma de Engenharia Operacional</div>
+        </div>
+        <div class="cv-h1">Uma empresa.<br><span class="dim">Três especialidades.<br>Um sistema.</span></div>
+        <div class="cv-desc">Da prospecção à entrega — projetos, treinamentos, laudos, certificados, equipe, financeiro
+            e pós-venda em um único fluxo.</div>
+        <div class="spec-pills">
+            <div class="sp sst">
+                <div class="sd"></div>Segurança do Trabalho
+            </div>
+            <div class="sp civil">
+                <div class="sd"></div>Engenharia Civil
+            </div>
+            <div class="sp elet">
+                <div class="sd"></div>Engenharia Elétrica
+            </div>
+        </div>
+    </div>
+
+    <div class="pg">
+
+        <!-- 01 PROBLEMA -->
+        <div class="sh">
+            <div class="sh-num">01 — PROBLEMA</div>
+            <h2>Por que o setor ainda opera no improviso</h2>
+        </div>
+        <p class="lead">Empresas de engenharia não faltam em demanda — faltam em processo. O mesmo problema aparece em
+            todas as especialidades: informação espalhada e operação dependente do dono.</p>
+        <div class="pain-list">
+            <div class="pain-card crit">
+                <div class="pain-sev">CRÍTICO — TODAS AS ÁREAS</div>
+                <h3>Operação depende da memória do dono</h3>
+                <p>Quem lembra da pendência, cobra a equipe, controla prazo e aprova entrega é sempre o empresário. Isso
+                    impede escala.</p>
+                <div class="pain-impact">↳ Sem sistema, não tem crescimento</div>
+            </div>
+            <div class="pain-card crit">
+                <div class="pain-sev">CRÍTICO — SST</div>
+                <h3>Vencimentos de treinamentos invisíveis</h3>
+                <p>O ouro do negócio SST está na recorrência. Sem controle de vencimento, a renovação não acontece e o
+                    faturamento some.</p>
+                <div class="pain-impact">↳ Perda direta de receita recorrente</div>
+            </div>
+            <div class="pain-card crit">
+                <div class="pain-sev">CRÍTICO — CIVIL / ELÉTRICA</div>
+                <h3>Comercial desconectado da execução</h3>
+                <p>Fecha o projeto de um jeito, a equipe executa de outro, o financeiro cobra depois. O cliente fica sem
+                    visão.</p>
+                <div class="pain-impact">↳ Retrabalho e imagem prejudicada</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO — TODAS AS ÁREAS</div>
+                <h3>Documentação espalhada sem rastreio</h3>
+                <p>Laudos, ARTs, certificados, checklists e evidências ficam em pastas, e-mail e WhatsApp. Sem versão,
+                    sem validade, sem controle.</p>
+                <div class="pain-impact">↳ Risco regulatório e perda de prazo</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO — CIVIL / ELÉTRICA</div>
+                <h3>Financeiro sem gatilho operacional</h3>
+                <p>O serviço é entregue mas a cobrança não é disparada. Receita realizada trava na operação.</p>
+                <div class="pain-impact">↳ Fluxo de caixa comprometido</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 02 SOLUÇÃO -->
+        <div class="sh">
+            <div class="sh-num">02 — PROPOSTA</div>
+            <h2>A solução</h2>
+        </div>
+        <div class="name-box">
+            <div class="nb-name">Engi<em>Flow</em></div>
+            <div class="nb-sub">Uma plataforma única para as três especialidades — cada uma com seu próprio fluxo e
+                lógica operacional.</div>
+        </div>
+        <div class="stmt">
+            <div class="ey">POSICIONAMENTO</div>
+            <h2>Não é mais um CRM.<br>É um <span class="g">sistema operacional</span> para <span
+                    class="b">engenharia</span> com <span class="y">múltiplas especialidades</span>.</h2>
+            <p>Da prospecção à entrega — tudo em um fluxo que entende a lógica de cada área da sua empresa.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 03 ESPECIALIDADES -->
+        <div class="sh">
+            <div class="sh-num">03 — ESPECIALIDADES</div>
+            <h2>Fluxo por especialidade</h2>
+        </div>
+        <p class="lead">Cada especialidade tem seu fluxo próprio dentro da mesma plataforma. O sistema não é engessado —
+            ele entende que SST, civil e elétrica exigem etapas, documentos e aprovações completamente diferentes.</p>
+
+        <!-- SST -->
+        <div class="spec-sec sst-sec">
+            <div class="spec-hd sst">
+                <div class="spec-ic sst">🛡️</div>
+                <div class="spec-meta">
+                    <div class="spec-tag-lbl">ESPECIALIDADE 01</div>
+                    <h3>Segurança do Trabalho — SST</h3>
+                </div>
+            </div>
+            <div class="spec-bdy">
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <span class="fp sst">Lead/empresa</span><span class="fa">→</span>
+                        <span class="fp sst">Proposta</span><span class="fa">→</span>
+                        <span class="fp sst">Contrato</span><span class="fa">→</span>
+                        <span class="fp sst">Turma</span><span class="fa">→</span>
+                        <span class="fp sst">Presença</span><span class="fa">→</span>
+                        <span class="fp sst">Certificado</span><span class="fa">→</span>
+                        <span class="fp sst">Vencimento</span><span class="fa">→</span>
+                        <span class="fp sst">Renovação auto</span>
+                    </div>
+                </div>
+                <div class="feat-list">
+                    <div class="feat-item">CRM B2B por empresa com matriz e filiais</div>
+                    <div class="feat-item">Turmas in company e abertas por NR</div>
+                    <div class="feat-item">Presença registrada por participante</div>
+                    <div class="feat-item">Certificado PDF com QR code de verificação</div>
+                    <div class="feat-item">Motor de vencimento — roda todo dia (cron)</div>
+                    <div class="feat-item">Radar: vencido / 7d / 30d / 60d por empresa</div>
+                    <div class="feat-item">Proposta de renovação gerada automaticamente</div>
+                    <div class="feat-item">Score de conformidade por empresa (0 a 100)</div>
+                    <div class="feat-item">Portal do cliente com acesso a certificados</div>
+                    <div class="feat-item">Financeiro vinculado à turma realizada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CIVIL -->
+        <div class="spec-sec civil-sec">
+            <div class="spec-hd civil">
+                <div class="spec-ic civil">🏗️</div>
+                <div class="spec-meta">
+                    <div class="spec-tag-lbl">ESPECIALIDADE 02</div>
+                    <h3>Engenharia Civil</h3>
+                </div>
+            </div>
+            <div class="spec-bdy">
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <span class="fp civil">Lead</span><span class="fa">→</span>
+                        <span class="fp civil">Visita técnica</span><span class="fa">→</span>
+                        <span class="fp civil">Orçamento</span><span class="fa">→</span>
+                        <span class="fp civil">Contrato+ART</span><span class="fa">→</span>
+                        <span class="fp civil">Cronograma</span><span class="fa">→</span>
+                        <span class="fp civil">Execução</span><span class="fa">→</span>
+                        <span class="fp civil">Medição</span><span class="fa">→</span>
+                        <span class="fp civil">Entrega+cobrança</span>
+                    </div>
+                </div>
+                <div class="feat-list">
+                    <div class="feat-item">Ordem de serviço / projeto por cliente</div>
+                    <div class="feat-item">Cronograma com etapas e dependências</div>
+                    <div class="feat-item">Responsável por etapa com prazo definido</div>
+                    <div class="feat-item">Registro de execução com fotos e evidências</div>
+                    <div class="feat-item">Medição aprovada → conta a receber automática</div>
+                    <div class="feat-item">Cofre de documentos: ART, projeto, memoriais</div>
+                    <div class="feat-item">Alerta de prazo em risco</div>
+                    <div class="feat-item">Pós-entrega: manutenção e recorrência</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ELÉTRICA -->
+        <div class="spec-sec elet-sec">
+            <div class="spec-hd elet">
+                <div class="spec-ic elet">⚡</div>
+                <div class="spec-meta">
+                    <div class="spec-tag-lbl">ESPECIALIDADE 03</div>
+                    <h3>Engenharia Elétrica</h3>
+                </div>
+            </div>
+            <div class="spec-bdy">
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <span class="fp elet">Lead</span><span class="fa">→</span>
+                        <span class="fp elet">Vistoria</span><span class="fa">→</span>
+                        <span class="fp elet">Laudo</span><span class="fa">→</span>
+                        <span class="fp elet">Proposta+ART</span><span class="fa">→</span>
+                        <span class="fp elet">Execução</span><span class="fa">→</span>
+                        <span class="fp elet">Testes</span><span class="fa">→</span>
+                        <span class="fp elet">Aceite técnico</span><span class="fa">→</span>
+                        <span class="fp elet">Fatura auto</span>
+                    </div>
+                </div>
+                <div class="feat-list">
+                    <div class="feat-item">Vistoria com checklist técnico</div>
+                    <div class="feat-item">Laudo e memorial com template por serviço</div>
+                    <div class="feat-item">ART vinculada ao serviço</div>
+                    <div class="feat-item">Aceite técnico → fatura gerada automaticamente</div>
+                    <div class="feat-item">Validade do laudo monitorada via cron</div>
+                    <div class="feat-item">Histórico técnico por unidade / instalação</div>
+                    <div class="feat-item">Renovação de laudos programada</div>
+                    <div class="feat-item">QR code de verificação no laudo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 04 NÚCLEO -->
+        <div class="sh">
+            <div class="sh-num">04 — NÚCLEO</div>
+            <h2>Base comum das três áreas</h2>
+        </div>
+        <p class="lead">Além dos fluxos por especialidade, há um núcleo compartilhado que elimina duplicidade e dá visão
+            unificada do negócio inteiro.</p>
+        <div class="core-grid">
+            <div class="core-card">
+                <div class="ci">🏢</div>
+                <h4>CRM Unificado</h4>
+                <p>Um cliente com histórico de projetos civis, elétricos e treinamentos SST no mesmo lugar.</p>
+            </div>
+            <div class="core-card">
+                <div class="ci">💰</div>
+                <h4>Financeiro Integrado</h4>
+                <p>Receita por área, por cliente, por tipo. Proposta → contrato → cobrança em um fluxo.</p>
+            </div>
+            <div class="core-card">
+                <div class="ci">📲</div>
+                <h4>WhatsApp Conectado</h4>
+                <p>Lead pelo WA vira registro no CRM. Bot responde, alerta prazos, confirma visitas.</p>
+            </div>
+            <div class="core-card">
+                <div class="ci">🌐</div>
+                <h4>Portal do Cliente</h4>
+                <p>Documentos, certificados, laudos e status sem precisar ligar.</p>
+            </div>
+            <div class="core-card">
+                <div class="ci">📁</div>
+                <h4>Cofre de Docs</h4>
+                <p>ARTs, laudos, certificados com versão, validade e responsável rastreado.</p>
+            </div>
+            <div class="core-card">
+                <div class="ci">📊</div>
+                <h4>Painel do Dono</h4>
+                <p>O que precisa de ação hoje, receita parada e projetos em risco — em tempo real.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 05 DIFERENCIAIS -->
+        <div class="sh">
+            <div class="sh-num">05 — DIFERENCIAIS</div>
+            <h2>O que nenhum sistema genérico entrega</h2>
+        </div>
+        <div class="diff-list">
+            <div class="diff-card">
+                <div class="diff-n">01</div>
+                <h4>Fluxo por especialidade, não genérico</h4>
+                <p>O sistema detecta se é SST, civil ou elétrica e abre o checklist, documentos e etapas corretos. Zero
+                    adaptação manual.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-n">02</div>
+                <h4>Motor de renovação e recorrência automático</h4>
+                <p>Roda todo dia. Treinamento, laudo elétrico ou inspeção civil — qualquer vencimento gera alerta,
+                    proposta e tarefa no comercial automaticamente.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-n">03</div>
+                <h4>Financeiro conectado à operação por gatilho</h4>
+                <p>Medição aprovada vira cobrança. Turma realizada libera fatura. Aceite técnico dispara conta a
+                    receber. Sem intervenção manual.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-n">04</div>
+                <h4>Radar de conformidade SST por empresa</h4>
+                <p>Score de conformidade mostrando treinados, vencidos e pendentes por filial. O cliente vê no portal —
+                    cria urgência real de compra.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-n">05</div>
+                <h4>QR code de verificação em certificados e laudos</h4>
+                <p>Auditoria escaneia e confirma autenticidade em tempo real. Diferencial de credibilidade imediato.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-n">06</div>
+                <h4>Portal self-service por especialidade</h4>
+                <p>O cliente acessa histórico completo sem ligar. Reduz atendimento manual em mais de 60%.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 06 ANTES E DEPOIS -->
+        <div class="sh">
+            <div class="sh-num">06 — IMPACTO</div>
+            <h2>Antes e depois</h2>
+        </div>
+        <div class="ba-list">
+            <div class="ba-col before">
+                <h3>SEM O SISTEMA</h3>
+                <ul>
+                    <li>Operação em planilha, WhatsApp e memória</li>
+                    <li>Vencimento SST perdido, renovação não acontece</li>
+                    <li>Laudo elétrico vencido sem alerta</li>
+                    <li>Medição aprovada, cobrança não disparada</li>
+                    <li>Cliente liga pedindo documento já emitido</li>
+                    <li>Dono aprova, cobra, despacha e executa</li>
+                    <li>Financeiro sem visão de receita por área</li>
+                </ul>
+            </div>
+            <div class="ba-col after">
+                <h3>COM O SISTEMA</h3>
+                <ul>
+                    <li>Toda operação em painel por especialidade</li>
+                    <li>Motor automático — zero vencimento escapa</li>
+                    <li>Alerta de laudo 60 dias antes do vencimento</li>
+                    <li>Medição → cobrança criada automaticamente</li>
+                    <li>Cliente baixa documento no portal sem ligar</li>
+                    <li>Dono monitora — não opera manualmente</li>
+                    <li>Receita SST, Civil e Elétrica em tempo real</li>
+                </ul>
+            </div>
+        </div>
+        <div class="roi-grid">
+            <div class="roi-item">
+                <div class="roi-n">100%</div>
+                <div class="roi-lbl">Vencimentos monitorados nas 3 áreas</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">0</div>
+                <div class="roi-lbl">Cobranças travadas por falta de gatilho</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">60%</div>
+                <div class="roi-lbl">Menos atendimento manual com portal</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">3×</div>
+                <div class="roi-lbl">Mais capacidade de crescer sem mais ops</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 07 ROTEIRO -->
+        <div class="sh">
+            <div class="sh-num">07 — ROTEIRO</div>
+            <h2>Roteiro de apresentação</h2>
+        </div>
+        <div class="script-list">
+            <div class="sc">
+                <div class="sc-moment">ABERTURA</div>
+                <p>"Vocês atuam com <strong>três especialidades diferentes</strong> — SST, civil e elétrica — mas cada
+                    uma roda desconectada. A proposta é criar <strong>um sistema único</strong> que entende a lógica de
+                    cada área e conecta tudo em um fluxo só."</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">DOR</div>
+                <p>"O dono vira o centro de tudo — lembra da pendência, cobra a equipe, controla prazo e aprova entrega.
+                    Em SST, cada vencimento que passa sem renovar é <strong>receita que fica na mesa</strong>."</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">SOLUÇÃO</div>
+                <p>"EngiFlow — um sistema operacional para engenharia. SST tem turmas, certificados e renovação
+                    automática. Civil tem cronograma, medição e entrega. Elétrica tem vistoria, laudo e aceite.
+                    <strong>Um sistema, três lógicas diferentes.</strong>"</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">DIFERENCIAL</div>
+                <p>"Medição aprovada vira cobrança. Turma realizada libera fatura. Aceite técnico dispara conta a
+                    receber. <strong>O financeiro age porque a operação concluiu — sem intervenção manual.</strong>"</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">FECHAMENTO</div>
+                <p>"<strong>Vocês deixam de operar na memória e passam a operar com previsibilidade.</strong> A receita
+                    recorrente aparece porque o sistema lembra do que ninguém lembra."</p>
+            </div>
+        </div>
+        <div class="close-box">
+            <div class="close-lbl">TESE DE VENDA CENTRAL</div>
+            <blockquote>"Vocês não vendem só serviço de engenharia.<br>Vocês vendem <span>resultado, conformidade e
+                    continuidade.</span><br>O sistema precisa refletir isso."</blockquote>
+            <p>Fala de receita, escala e posicionamento — não de tecnologia.</p>
+        </div>
+
+    </div>
+    <div class="footer">ENGIFLOW — PROPOSTA COMERCIAL · SST · CIVIL · ELÉTRICA · v1.0 · CONFIDENCIAL</div>
+</body>
+
+</html>

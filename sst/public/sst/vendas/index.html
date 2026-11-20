@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SST Flow — Proposta Comercial</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --ink: #0d1117;
+            --s1: #fff;
+            --s2: #f5f4f0;
+            --border: #e4dfd6;
+            --border2: #ccc7be;
+            --text: #1a2030;
+            --muted: #6b7280;
+            --muted2: #94a3b8;
+            --green: #16a34a;
+            --gl: rgba(22, 163, 74, .09);
+            --gm: rgba(22, 163, 74, .2);
+            --red: #c94b1e;
+            --gold: #b8860b
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.7
+        }
+
+        /* COVER */
+        .cover {
+            background: var(--ink);
+            padding: 48px 22px 44px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -60px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(22, 163, 74, .14) 0%, transparent 65%);
+            filter: blur(50px)
+        }
+
+        .cv-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 1
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .brand-ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px
+        }
+
+        .brand-nm {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.5px
+        }
+
+        .brand-nm em {
+            font-style: normal;
+            color: #4ade80
+        }
+
+        .cv-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, .3);
+            border: 1px solid rgba(255, 255, 255, .1);
+            padding: 5px 10px;
+            border-radius: 3px
+        }
+
+        .cv-kicker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1
+        }
+
+        .kd {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #4ade80
+        }
+
+        .kt {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: #4ade80;
+            text-transform: uppercase
+        }
+
+        .cv-h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .cv-h1 .g {
+            color: #4ade80
+        }
+
+        .cv-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300
+        }
+
+        .cv-quote {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .25);
+            border-left: 2px solid rgba(74, 222, 128, .4);
+            padding-left: 14px;
+            line-height: 1.55;
+            position: relative;
+            z-index: 1
+        }
+
+        .cv-quote strong {
+            color: rgba(255, 255, 255, .5)
+        }
+
+        /* PAGE */
+        .pg {
+            padding: 36px 20px
+        }
+
+        .sh {
+            margin-bottom: 24px
+        }
+
+        .sh-num {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            background: var(--s2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            margin-bottom: 10px
+        }
+
+        .sh h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            color: var(--ink)
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.8
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 42px 0
+        }
+
+        /* PAIN */
+        .pain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .pain-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid
+        }
+
+        .crit {
+            border-left-color: var(--red)
+        }
+
+        .high {
+            border-left-color: var(--gold)
+        }
+
+        .pain-sev {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 7px
+        }
+
+        .crit .pain-sev {
+            color: var(--red)
+        }
+
+        .high .pain-sev {
+            color: var(--gold)
+        }
+
+        .pain-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--ink)
+        }
+
+        .pain-card p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 10px
+        }
+
+        .pain-impact {
+            font-size: 12px;
+            font-weight: 500
+        }
+
+        .crit .pain-impact {
+            color: var(--red)
+        }
+
+        .high .pain-impact {
+            color: var(--gold)
+        }
+
+        /* STATEMENT */
+        .stmt {
+            background: var(--ink);
+            border-radius: 14px;
+            padding: 34px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .stmt::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 110%, rgba(74, 222, 128, .1) 0%, transparent 60%)
+        }
+
+        .stmt .ey {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #4ade80;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1
+        }
+
+        .stmt h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.5px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1
+        }
+
+        .stmt h2 .g {
+            color: #4ade80
+        }
+
+        .stmt p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+            font-weight: 300
+        }
+
+        /* MODULES */
+        .mod-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px
+        }
+
+        .mod {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start
+        }
+
+        .mod-ic {
+            font-size: 26px;
+            flex-shrink: 0
+        }
+
+        .mod h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px
+        }
+
+        .mod p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.55
+        }
+
+        /* DIFF */
+        .diff-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .diff-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start
+        }
+
+        .diff-ic {
+            width: 40px;
+            height: 40px;
+            background: var(--gl);
+            border: 1px solid var(--gm);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0
+        }
+
+        .diff-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 5px
+        }
+
+        .diff-card p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        /* BEFORE / AFTER */
+        .ba-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .ba-col {
+            border-radius: 12px;
+            padding: 22px 18px
+        }
+
+        .ba-col.before {
+            background: #fef2f2;
+            border: 1px solid #fecaca
+        }
+
+        .ba-col.after {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0
+        }
+
+        .ba-col h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            margin-bottom: 14px
+        }
+
+        .before h3 {
+            color: #dc2626
+        }
+
+        .after h3 {
+            color: var(--green)
+        }
+
+        .ba-col ul {
+            list-style: none;
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .ba-col ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .06);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            line-height: 1.5
+        }
+
+        .ba-col ul li:last-child {
+            border-bottom: none
+        }
+
+        .before ul li::before {
+            content: '✕';
+            color: #dc2626;
+            flex-shrink: 0;
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        .after ul li::before {
+            content: '✓';
+            color: var(--green);
+            flex-shrink: 0;
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        /* ROI */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .roi-item {
+            background: var(--green);
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+            color: #fff
+        }
+
+        .roi-item:nth-child(2) {
+            background: #145c31
+        }
+
+        .roi-item:nth-child(3) {
+            background: #0e4223
+        }
+
+        .roi-item:nth-child(4) {
+            background: #0a3019
+        }
+
+        .roi-n {
+            font-family: 'Syne', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 7px
+        }
+
+        .roi-lbl {
+            font-size: 11px;
+            opacity: .8;
+            line-height: 1.4
+        }
+
+        /* SCRIPT */
+        .script-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .sc {
+            background: var(--ink);
+            border-radius: 12px;
+            padding: 22px 20px
+        }
+
+        .sc-moment {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            color: #4ade80;
+            margin-bottom: 10px
+        }
+
+        .sc p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .82);
+            line-height: 1.75;
+            font-style: italic
+        }
+
+        .sc p strong {
+            color: #fff;
+            font-style: normal
+        }
+
+        .close-box {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px 20px;
+            margin-top: 12px
+        }
+
+        .close-lbl {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--muted2);
+            margin-bottom: 14px
+        }
+
+        .close-box blockquote {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.3;
+            letter-spacing: -.5px;
+            border-left: 4px solid var(--green);
+            padding-left: 18px;
+            margin-bottom: 14px
+        }
+
+        .close-box blockquote span {
+            color: var(--green)
+        }
+
+        .close-box p {
+            font-size: 12px;
+            color: var(--muted);
+            padding-left: 22px;
+            line-height: 1.6
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted2);
+            text-align: center;
+            line-height: 1.8;
+            letter-spacing: 1px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cover">
+        <div class="cv-top">
+            <div class="brand">
+                <div class="brand-ic">🛡️</div>
+                <div class="brand-nm">SST<em>Flow</em></div>
+            </div>
+            <div class="cv-badge">PROPOSTA</div>
+        </div>
+        <div class="cv-kicker">
+            <div class="kd"></div>
+            <div class="kt">Treinamentos e Conformidade SST</div>
+        </div>
+        <div class="cv-h1">Do treinamento à<br><span class="g">renovação automática.</span></div>
+        <div class="cv-desc">Comercial · turmas · certificados · vencimentos · renovação · financeiro — em um fluxo
+            único e automatizado.</div>
+        <div class="cv-quote"><strong>"O sistema não serve para organizar aula.</strong> Ele serve para transformar
+            vencimento em renovação e operação em receita recorrente."</div>
+    </div>
+
+    <div class="pg">
+
+        <div class="sh">
+            <div class="sh-num">01 — PROBLEMA</div>
+            <h2>As 8 dores de quem vende treinamento SST</h2>
+        </div>
+        <p class="lead">Quem vende aula de SST normalmente sofre com 8 dores pesadas — nenhuma delas é resolvida por
+            planilha.</p>
+        <div class="pain-list">
+            <div class="pain-card crit">
+                <div class="pain-sev">CRÍTICO</div>
+                <h3>Controle manual de treinamentos</h3>
+                <p>Tudo espalhado entre planilhas, WhatsApp e memória. Turma esquecida, aluno sem confirmação,
+                    certificado atrasado.</p>
+                <div class="pain-impact">↳ Retrabalho constante + cliente insatisfeito</div>
+            </div>
+            <div class="pain-card crit">
+                <div class="pain-sev">CRÍTICO</div>
+                <h3>Vencimentos não controlados</h3>
+                <p>O ouro do negócio está na recorrência. Sem controle de vencimento, a renovação não acontece e o
+                    faturamento some.</p>
+                <div class="pain-impact">↳ Perda direta de faturamento recorrente</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO</div>
+                <h3>Comercial desconectado da operação</h3>
+                <p>Fecha o treinamento, mas: quem vai ministrar? Onde? Quantos alunos? Já recebeu? A bagunça começa
+                    aqui.</p>
+                <div class="pain-impact">↳ Erro operacional + imagem ruim</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO</div>
+                <h3>Certificados em caos</h3>
+                <p>Dificuldade em gerar rápido, localizar depois, comprovar entrega e reenviar quando o cliente cobra.
+                </p>
+                <div class="pain-impact">↳ Atendimento manual e retrabalho</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO</div>
+                <h3>Sem visão por empresa cliente</h3>
+                <p>Cada cliente tem unidades, colaboradores, funções e vencimentos diferentes. Sem sistema, o dono perde
+                    visão.</p>
+                <div class="pain-impact">↳ Gestão impossível com escala</div>
+            </div>
+            <div class="pain-card high">
+                <div class="pain-sev">ALTO</div>
+                <h3>Financeiro desconectado</h3>
+                <p>Treinamento foi dado, mas não faturou, não cobrou, não sabe o que está pendente.</p>
+                <div class="pain-impact">↳ Receita realizada não convertida</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sh">
+            <div class="sh-num">02 — SOLUÇÃO</div>
+            <h2>A proposta</h2>
+        </div>
+        <div class="stmt">
+            <div class="ey">POSICIONAMENTO</div>
+            <h2>Um <span class="g">sistema operacional</span> de treinamentos SST.</h2>
+            <p>CRM + turmas + certificados + vencimentos + renovação + financeiro — em um fluxo único conectado e
+                automatizado.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sh">
+            <div class="sh-num">03 — MÓDULOS</div>
+            <h2>O que a plataforma entrega</h2>
+        </div>
+        <div class="mod-list">
+            <div class="mod">
+                <div class="mod-ic">🏢</div>
+                <div>
+                    <h4>CRM B2B por empresa</h4>
+                    <p>Empresa com matriz, filiais, contatos, histórico, pipeline e origem do lead. Não é um contato — é
+                        uma carteira.</p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">📅</div>
+                <div>
+                    <h4>Agenda de turmas</h4>
+                    <p>Turma criada, instrutor alocado, vagas controladas, lembretes automáticos. In company ou aberta.
+                    </p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">✅</div>
+                <div>
+                    <h4>Presença e participantes</h4>
+                    <p>Lista por turma, presença registrada no dia, histórico do colaborador e cargo vinculados.</p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">🏅</div>
+                <div>
+                    <h4>Certificados automáticos</h4>
+                    <p>Turma realizada → PDF gerado com QR code de verificação. Cliente baixa no portal sem ligar.</p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">⏰</div>
+                <div>
+                    <h4>Motor de renovação</h4>
+                    <p>Roda todo dia. Detecta vencimentos, dispara WhatsApp/e-mail, abre proposta e cria tarefa no
+                        comercial.</p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">💰</div>
+                <div>
+                    <h4>Financeiro conectado</h4>
+                    <p>Proposta → contrato → cobrança → pagamento. Receita por empresa, tipo e recorrente. Nada fica
+                        invisível.</p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">🌐</div>
+                <div>
+                    <h4>Portal do cliente</h4>
+                    <p>Empresa acessa histórico, baixa certificados, vê vencimentos e solicita novas turmas — sem ligar.
+                    </p>
+                </div>
+            </div>
+            <div class="mod">
+                <div class="mod-ic">📲</div>
+                <div>
+                    <h4>WhatsApp integrado</h4>
+                    <p>Lead entra pelo WhatsApp, vira registro no CRM. Bot responde, alerta vencimentos, confirma
+                        turmas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sh">
+            <div class="sh-num">04 — DIFERENCIAIS</div>
+            <h2>O que nenhum sistema genérico entrega</h2>
+        </div>
+        <div class="diff-list">
+            <div class="diff-card">
+                <div class="diff-ic">🎯</div>
+                <div>
+                    <h4>Radar de Conformidade por Empresa</h4>
+                    <p>Painel que mostra, para cada cliente, quantos colaboradores estão treinados, vencidos e qual o
+                        score de 0 a 100. O cliente vê isso — e cria urgência real de compra.</p>
+                </div>
+            </div>
+            <div class="diff-card">
+                <div class="diff-ic">🔁</div>
+                <div>
+                    <h4>Motor de Renovação Automático</h4>
+                    <p>Roda todo dia sem intervenção. Nenhum vencimento passa sem ação. A renovação vira processo
+                        automático que gera receita recorrente.</p>
+                </div>
+            </div>
+            <div class="diff-card">
+                <div class="diff-ic">🤝</div>
+                <div>
+                    <h4>Turma Inteligente</h4>
+                    <p>Sistema detecta que empresa A e empresa B (mesma cidade, mesma NR) podem ser agrupadas. Reduz
+                        custo e fecha turma mais rápido.</p>
+                </div>
+            </div>
+            <div class="diff-card">
+                <div class="diff-ic">🔍</div>
+                <div>
+                    <h4>Certificado com QR de Verificação</h4>
+                    <p>QR code único por certificado. Qualquer auditoria escaneia e confirma autenticidade em tempo
+                        real.</p>
+                </div>
+            </div>
+            <div class="diff-card">
+                <div class="diff-ic">📊</div>
+                <div>
+                    <h4>Painel do Dono</h4>
+                    <p>O que precisa de ação hoje, receita realizada não cobrada, próximos vencimentos críticos e
+                        projeção de recorrência do mês.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sh">
+            <div class="sh-num">05 — IMPACTO</div>
+            <h2>Antes e depois</h2>
+        </div>
+        <div class="ba-list">
+            <div class="ba-col before">
+                <h3>SEM O SISTEMA</h3>
+                <ul>
+                    <li>Treinamentos em planilha, WhatsApp e memória</li>
+                    <li>Vencimentos esquecidos, renovação perdida</li>
+                    <li>Cliente liga pedindo certificado já emitido</li>
+                    <li>Turma realizada, cobrança não disparada</li>
+                    <li>Sem visão de qual cliente está irregular</li>
+                    <li>Pós-venda fraco, churn silencioso</li>
+                </ul>
+            </div>
+            <div class="ba-col after">
+                <h3>COM O SISTEMA</h3>
+                <ul>
+                    <li>Toda operação em painel estruturado</li>
+                    <li>Motor automático de vencimentos — zero escape</li>
+                    <li>Cliente baixa certificado no portal sem ligar</li>
+                    <li>Cobrança criada automaticamente pós-turma</li>
+                    <li>Radar de conformidade por empresa e filial</li>
+                    <li>WA proativo gera nova venda antes do vencimento</li>
+                </ul>
+            </div>
+        </div>
+        <div class="roi-grid">
+            <div class="roi-item">
+                <div class="roi-n">60%</div>
+                <div class="roi-lbl">Menos atendimento manual com portal</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">0</div>
+                <div class="roi-lbl">Vencimentos passando sem ação</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">1-click</div>
+                <div class="roi-lbl">Geração de certificados pós-turma</div>
+            </div>
+            <div class="roi-item">
+                <div class="roi-n">∞</div>
+                <div class="roi-lbl">Escala sem contratar mais para operar</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sh">
+            <div class="sh-num">06 — ROTEIRO</div>
+            <h2>Roteiro de apresentação</h2>
+        </div>
+        <div class="script-list">
+            <div class="sc">
+                <div class="sc-moment">ABERTURA</div>
+                <p>"O <strong>coração da operação de vocês</strong> não está só na engenharia — está na gestão dos
+                    treinamentos SST, na documentação e no controle das recorrências."</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">DOR</div>
+                <p>"Hoje, quando isso é controlado de forma manual, o negócio perde velocidade e corre o risco de
+                    <strong>perder renovação, certificado, prazo e faturamento — sem perceber.</strong>"
+                </p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">SOLUÇÃO</div>
+                <p>"A proposta é uma plataforma que <strong>conecta comercial, turmas, certificados, vencimentos,
+                        renovações, documentos e financeiro</strong> em um fluxo único."</p>
+            </div>
+            <div class="sc">
+                <div class="sc-moment">FECHAMENTO</div>
+                <p>"<strong>Vocês deixam de operar na memória e passam a operar com previsibilidade, escala e
+                        recorrência.</strong>"</p>
+            </div>
+        </div>
+        <div class="close-box">
+            <div class="close-lbl">TESE CENTRAL DE VENDA</div>
+            <blockquote>"Hoje vocês não vendem só aulas.<br>Vocês vendem <span>conformidade, recorrência</span><br>e
+                segurança documental.<br>O sistema precisa refletir isso."</blockquote>
+            <p>Fala da receita do cliente — não de tecnologia.</p>
+        </div>
+
+    </div>
+    <div class="footer">SST FLOW — PROPOSTA COMERCIAL · v1.0 · CONFIDENCIAL</div>
+</body>
+
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiFlow — Hub</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #07090f;
+            --s1: #0d1118;
+            --border: #16202e;
+            --border2: #1c2840;
+            --text: #dde8f4;
+            --muted: #4a5e76;
+            --muted2: #8aa0ba;
+            --sst: #4ade80;
+            --civil: #60a5fa;
+            --elet: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            padding: 36px 18px 60px
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .o1 {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(74, 222, 128, .07) 0%, transparent 70%);
+            top: -80px;
+            left: -80px
+        }
+
+        .o2 {
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(96, 165, 250, .05) 0%, transparent 70%);
+            bottom: -60px;
+            right: -60px
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 560px;
+            margin: 0 auto
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 26px
+        }
+
+        .ey-l {
+            width: 18px;
+            height: 1px;
+            background: var(--sst);
+            opacity: .4
+        }
+
+        .ey-t {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--muted2);
+            text-transform: uppercase
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 10px
+        }
+
+        .logo-ic {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--s1);
+            border: 1px solid var(--border2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px
+        }
+
+        .logo-nm {
+            font-family: 'Syne', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -1px
+        }
+
+        .logo-nm .s {
+            color: var(--sst)
+        }
+
+        .logo-nm .c {
+            color: var(--civil)
+        }
+
+        .logo-nm .e {
+            color: var(--elet)
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--muted2);
+            text-align: center;
+            line-height: 1.7;
+            margin-bottom: 20px
+        }
+
+        .pills {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 34px
+        }
+
+        .pill {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            padding: 5px 11px;
+            border-radius: 20px;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .pill .pd {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: currentColor
+        }
+
+        .p-s {
+            color: var(--sst);
+            border-color: rgba(74, 222, 128, .3);
+            background: rgba(74, 222, 128, .05)
+        }
+
+        .p-c {
+            color: var(--civil);
+            border-color: rgba(96, 165, 250, .3);
+            background: rgba(96, 165, 250, .05)
+        }
+
+        .p-e {
+            color: var(--elet);
+            border-color: rgba(251, 191, 36, .3);
+            background: rgba(251, 191, 36, .05)
+        }
+
+        .sec-lbl {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            color: var(--muted);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 12px
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 28px
+        }
+
+        .card {
+            display: flex;
+            align-items: stretch;
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: background .15s
+        }
+
+        .card:active {
+            background: #101620
+        }
+
+        .c-ms {
+            border-left: 4px solid var(--sst)
+        }
+
+        .c-mt {
+            border-left: 4px solid var(--civil)
+        }
+
+        .c-ss {
+            border-left: 4px solid var(--sst)
+        }
+
+        .c-st {
+            border-left: 4px solid rgba(74, 222, 128, .35)
+        }
+
+        .c-ico {
+            width: 58px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px
+        }
+
+        .cb {
+            flex: 1;
+            padding: 16px 14px 16px 2px;
+            min-width: 0
+        }
+
+        .cb-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 5px
+        }
+
+        .c-ms .cb-tag {
+            color: var(--sst)
+        }
+
+        .c-mt .cb-tag {
+            color: var(--civil)
+        }
+
+        .c-ss .cb-tag,
+        .c-st .cb-tag {
+            color: rgba(74, 222, 128, .7)
+        }
+
+        .cb h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+            line-height: 1.3
+        }
+
+        .cb p {
+            font-size: 12px;
+            color: var(--muted2);
+            line-height: 1.55
+        }
+
+        .tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 9px
+        }
+
+        .tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            border: 1px solid
+        }
+
+        .c-ms .tag {
+            background: rgba(74, 222, 128, .07);
+            color: rgba(74, 222, 128, .8);
+            border-color: rgba(74, 222, 128, .2)
+        }
+
+        .c-mt .tag {
+            background: rgba(96, 165, 250, .07);
+            color: rgba(96, 165, 250, .8);
+            border-color: rgba(96, 165, 250, .2)
+        }
+
+        .c-ss .tag,
+        .c-st .tag {
+            background: rgba(74, 222, 128, .05);
+            color: rgba(74, 222, 128, .65);
+            border-color: rgba(74, 222, 128, .15)
+        }
+
+        .arr {
+            width: 38px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 15px
+        }
+
+        .feat {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            padding: 1px 6px;
+            border-radius: 2px;
+            background: rgba(74, 222, 128, .12);
+            color: var(--sst);
+            border: 1px solid rgba(74, 222, 128, .25);
+            margin-left: 6px;
+            vertical-align: middle;
+            letter-spacing: 1px
+        }
+
+        .foot {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            margin-top: 4px
+        }
+
+        .fd {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--border2)
+        }
+
+        .fv {
+            color: var(--sst);
+            opacity: .7
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="wrap">
+        <div class="eyebrow">
+            <div class="ey-l"></div>
+            <div class="ey-t">Hub de Documentos</div>
+            <div class="ey-l"></div>
+        </div>
+        <div class="logo">
+            <div class="logo-ic">⚙️</div>
+            <div class="logo-nm">Engi<span class="s">F</span><span class="c">l</span><span class="e">o</span>w</div>
+        </div>
+        <div class="tagline">Plataforma operacional para empresas de engenharia.<br>SST · Civil · Elétrica</div>
+        <div class="pills">
+            <div class="pill p-s">
+                <div class="pd"></div>SST
+            </div>
+            <div class="pill p-c">
+                <div class="pd"></div>Civil
+            </div>
+            <div class="pill p-e">
+                <div class="pd"></div>Elétrica
+            </div>
+        </div>
+
+        <div class="sec-lbl">PROPOSTA COMPLETA — TRÊS ESPECIALIDADES</div>
+        <div class="cards">
+            <a class="card c-ms" href="vendas/index.html">
+                <div class="c-ico">📊</div>
+                <div class="cb">
+                    <div class="cb-tag">APRESENTAÇÃO COMERCIAL <span class="feat">PRINCIPAL</span></div>
+                    <h3>Proposta — SST + Civil + Elétrica</h3>
+                    <p>Dores do setor, fluxo por especialidade, diferenciais, ROI e roteiro de venda.</p>
+                    <div class="tags"><span class="tag">3 Especialidades</span><span class="tag">Fluxos</span><span
+                            class="tag">Roteiro</span></div>
+                </div>
+                <div class="arr">→</div>
+            </a>
+            <a class="card c-mt" href="proposta-tecnica.html">
+                <div class="c-ico">⚙️</div>
+                <div class="cb">
+                    <div class="cb-tag">DOCUMENTO TÉCNICO</div>
+                    <h3>Arquitetura — 3 Especialidades</h3>
+                    <p>Infra, stack, módulos, fluxos, lifecycle e WhatsApp para todas as áreas.</p>
+                    <div class="tags"><span class="tag">Workers · D1</span><span class="tag">Go · whatsmeow</span><span
+                            class="tag">5 Fluxos</span></div>
+                </div>
+                <div class="arr">→</div>
+            </a>
+        </div>
+
+        <div class="sec-lbl">VERSÃO FOCADA — SEGURANÇA DO TRABALHO</div>
+        <div class="cards">
+            <a class="card c-ss" href="sst/vendas/index.html">
+                <div class="c-ico">🛡️</div>
+                <div class="cb">
+                    <div class="cb-tag">APRESENTAÇÃO — SST</div>
+                    <h3>Proposta SST — Treinamentos e Renovação</h3>
+                    <p>8 dores SST, turmas, certificados, recorrência automática e portal do cliente.</p>
+                    <div class="tags"><span class="tag">8 Dores</span><span class="tag">Renovação</span><span
+                            class="tag">Portal</span></div>
+                </div>
+                <div class="arr">→</div>
+            </a>
+            <a class="card c-st" href="sst/tecnico/index.html">
+                <div class="c-ico">📐</div>
+                <div class="cb">
+                    <div class="cb-tag">TÉCNICO — SST</div>
+                    <h3>Arquitetura SST — Detalhamento Completo</h3>
+                    <p>Fluxos de turma, certificados, motor de renovação e WA bridge em detalhe.</p>
+                    <div class="tags"><span class="tag">Lifecycle</span><span class="tag">WA 7 passos</span><span
+                            class="tag">Cron</span></div>
+                </div>
+                <div class="arr">→</div>
+            </a>
+        </div>
+
+        <div class="foot"><span class="fv">v1.0</span>
+            <div class="fd"></div><span>ENGIFLOW</span>
+            <div class="fd"></div><span>CONFIDENCIAL</span>
+        </div>
+    </div>
+</body>
+
+</html>

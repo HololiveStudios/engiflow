@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiFlow — Documento Técnico</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080d14;
+            --s1: #0d1520;
+            --s2: #111d2c;
+            --border: #162030;
+            --border2: #1c2d42;
+            --text: #dde5ef;
+            --muted: #4a5e74;
+            --muted2: #7a90a8;
+            --accent: #22d3ee;
+            --sst: #4ade80;
+            --sstb: rgba(74, 222, 128, .12);
+            --sstd: rgba(74, 222, 128, .06);
+            --civil: #60a5fa;
+            --civilb: rgba(96, 165, 250, .12);
+            --civild: rgba(96, 165, 250, .06);
+            --elet: #fbbf24;
+            --eletb: rgba(251, 191, 36, .12);
+            --eletd: rgba(251, 191, 36, .06);
+            --sh: #a78bfa;
+            --shb: rgba(167, 139, 250, .12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.7
+        }
+
+        /* HEADER */
+        .hdr {
+            background: linear-gradient(160deg, #080d14 0%, #0c1828 70%, #090e18 100%);
+            border-bottom: 1px solid var(--border2);
+            padding: 40px 20px 36px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hdr::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -60px;
+            width: 280px;
+            height: 280px;
+            background: conic-gradient(from 180deg, rgba(74, 222, 128, .05), rgba(96, 165, 250, .04), rgba(251, 191, 36, .04), transparent);
+            border-radius: 50%;
+            filter: blur(40px)
+        }
+
+        .hdr-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 211, 238, .08);
+            border: 1px solid rgba(34, 211, 238, .2);
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            padding: 5px 11px;
+            border-radius: 3px;
+            margin-bottom: 18px
+        }
+
+        .hdr h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1
+        }
+
+        .hdr h1 .s {
+            color: var(--sst)
+        }
+
+        .hdr h1 .c {
+            color: var(--civil)
+        }
+
+        .hdr h1 .e {
+            color: var(--elet)
+        }
+
+        .hdr p {
+            color: var(--muted2);
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.7
+        }
+
+        .hdr-meta {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--muted);
+            position: relative;
+            z-index: 1
+        }
+
+        .hdr-meta span {
+            color: var(--accent);
+            margin-right: 6px
+        }
+
+        .spec-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .sl {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px
+        }
+
+        .sl .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%
+        }
+
+        .sl.sst {
+            color: var(--sst)
+        }
+
+        .sl.civil {
+            color: var(--civil)
+        }
+
+        .sl.elet {
+            color: var(--elet)
+        }
+
+        .sl.sh {
+            color: var(--sh)
+        }
+
+        .sl.sst .dot {
+            background: var(--sst)
+        }
+
+        .sl.civil .dot {
+            background: var(--civil)
+        }
+
+        .sl.elet .dot {
+            background: var(--elet)
+        }
+
+        .sl.sh .dot {
+            background: var(--sh)
+        }
+
+        /* PAGE */
+        .pg {
+            padding: 32px 18px
+        }
+
+        .sec {
+            margin-bottom: 52px
+        }
+
+        .sec-lbl {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3.5px;
+            color: var(--accent);
+            margin-bottom: 8px
+        }
+
+        .sec h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -.3px
+        }
+
+        .sec>p {
+            color: var(--muted2);
+            margin-bottom: 16px;
+            line-height: 1.8;
+            font-size: 13px
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 44px 0
+        }
+
+        /* NOTE / WARN */
+        .note {
+            background: rgba(34, 211, 238, .04);
+            border: 1px solid rgba(34, 211, 238, .15);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12px;
+            color: var(--muted2);
+            margin-top: 12px;
+            line-height: 1.7
+        }
+
+        .note strong {
+            color: var(--accent)
+        }
+
+        .warn {
+            background: rgba(251, 191, 36, .04);
+            border: 1px solid rgba(251, 191, 36, .15);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12px;
+            color: var(--muted2);
+            margin-top: 12px;
+            line-height: 1.7
+        }
+
+        .warn strong {
+            color: var(--elet)
+        }
+
+        /* INFRA CARDS */
+        .infra-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px
+        }
+
+        .ic {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px
+        }
+
+        .ic.vps {
+            border-color: rgba(167, 139, 250, .3)
+        }
+
+        .ic h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 3px
+        }
+
+        .ic .sub {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            letter-spacing: 1px
+        }
+
+        .ic ul {
+            list-style: none;
+            font-size: 12px;
+            color: var(--muted2)
+        }
+
+        .ic ul li {
+            padding: 3px 0;
+            display: flex;
+            gap: 7px;
+            align-items: flex-start
+        }
+
+        .ic ul li::before {
+            content: '→';
+            color: var(--accent);
+            font-size: 10px;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-top: 10px
+        }
+
+        .badge.cf {
+            background: rgba(34, 211, 238, .1);
+            color: var(--accent);
+            border: 1px solid rgba(34, 211, 238, .25)
+        }
+
+        .badge.vps {
+            background: var(--shb);
+            color: var(--sh);
+            border: 1px solid rgba(167, 139, 250, .3)
+        }
+
+        /* STACK TABLE — scroll */
+        .tbl-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border)
+        }
+
+        .stk {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            min-width: 520px
+        }
+
+        .stk th {
+            background: var(--s2);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 13px;
+            text-align: left;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: var(--muted2)
+        }
+
+        .stk td {
+            border-bottom: 1px solid var(--border);
+            padding: 10px 13px;
+            color: var(--muted2);
+            vertical-align: top
+        }
+
+        .stk tr:last-child td {
+            border-bottom: none
+        }
+
+        .stk tr:nth-child(even) td {
+            background: rgba(255, 255, 255, .01)
+        }
+
+        .stk .tech {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--accent)
+        }
+
+        .stk .reason {
+            color: var(--text);
+            font-size: 11px
+        }
+
+        /* MODULE LIST */
+        .mod-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .mod {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden
+        }
+
+        .mod-hd {
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .mod-hd .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .mod-hd h4 {
+            font-size: 13px;
+            font-weight: 600;
+            flex: 1
+        }
+
+        .mod-hd .stag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 2px
+        }
+
+        .stag.sst {
+            background: var(--sstb);
+            color: var(--sst)
+        }
+
+        .stag.civil {
+            background: var(--civilb);
+            color: var(--civil)
+        }
+
+        .stag.elet {
+            background: var(--eletb);
+            color: var(--elet)
+        }
+
+        .stag.all {
+            background: var(--shb);
+            color: var(--sh)
+        }
+
+        .mod ul {
+            list-style: none;
+            padding: 12px 16px
+        }
+
+        .mod ul li {
+            font-size: 11px;
+            color: var(--muted2);
+            padding: 3px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 7px
+        }
+
+        .mod ul li:last-child {
+            border-bottom: none
+        }
+
+        .mod ul li::before {
+            content: '—';
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        /* FLOW BLOCKS */
+        .flow-blk {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 12px
+        }
+
+        .flow-blk h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 9px
+        }
+
+        .fn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            color: #000;
+            flex-shrink: 0
+        }
+
+        .fn.sst {
+            background: var(--sst)
+        }
+
+        .fn.civil {
+            background: var(--civil)
+        }
+
+        .fn.elet {
+            background: var(--elet)
+        }
+
+        .fn.sh {
+            background: var(--sh)
+        }
+
+        .flow-blk .desc {
+            color: var(--muted2);
+            font-size: 11px;
+            margin-bottom: 14px
+        }
+
+        .flow-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 6px
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 0
+        }
+
+        .fb {
+            background: var(--s2);
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            padding: 9px 12px;
+            font-size: 10px;
+            text-align: center;
+            min-width: 92px;
+            line-height: 1.4;
+            flex-shrink: 0
+        }
+
+        .fb .sn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 3px
+        }
+
+        .fb.sst {
+            border-color: rgba(74, 222, 128, .3)
+        }
+
+        .fb.civil {
+            border-color: rgba(96, 165, 250, .3)
+        }
+
+        .fb.elet {
+            border-color: rgba(251, 191, 36, .3)
+        }
+
+        .fb.sh {
+            border-color: rgba(167, 139, 250, .3)
+        }
+
+        .fa {
+            color: var(--muted);
+            padding: 0 5px;
+            font-size: 13px;
+            flex-shrink: 0
+        }
+
+        /* ENTITIES */
+        .ent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .ent {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden
+        }
+
+        .ent-h {
+            padding: 9px 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .ent-h.sst {
+            background: var(--sstd);
+            color: var(--sst)
+        }
+
+        .ent-h.civil {
+            background: var(--civild);
+            color: var(--civil)
+        }
+
+        .ent-h.elet {
+            background: var(--eletd);
+            color: var(--elet)
+        }
+
+        .ent-h.sh {
+            background: rgba(167, 139, 250, .05);
+            color: var(--sh)
+        }
+
+        .ent-b {
+            padding: 10px 14px
+        }
+
+        .ef {
+            font-size: 10px;
+            color: var(--muted2);
+            padding: 2px 0;
+            display: flex;
+            gap: 7px
+        }
+
+        .ef .fn2 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--text);
+            font-size: 10px
+        }
+
+        .ef .ft {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--muted);
+            font-size: 10px
+        }
+
+        /* LIFECYCLE */
+        .lc-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0
+        }
+
+        .lc {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            width: max-content;
+            min-width: 100%
+        }
+
+        .lc-s {
+            flex: 1;
+            min-width: 90px;
+            padding: 14px 10px;
+            border-right: 1px solid var(--border);
+            text-align: center;
+            font-size: 10px
+        }
+
+        .lc-s:last-child {
+            border-right: none
+        }
+
+        .lc-s .li {
+            font-size: 16px;
+            margin-bottom: 5px
+        }
+
+        .lc-s .ln {
+            font-weight: 600;
+            font-size: 11px;
+            margin-bottom: 3px
+        }
+
+        .lc-s .ld {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.4
+        }
+
+        .lc-s.sst {
+            background: var(--sstd)
+        }
+
+        .lc-s.civil {
+            background: var(--civild)
+        }
+
+        .lc-s.elet {
+            background: var(--eletd)
+        }
+
+        .lc-s.cancel {
+            background: rgba(239, 68, 68, .05)
+        }
+
+        .lc-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin: 16px 0 6px
+        }
+
+        .lc-label.sst {
+            color: var(--sst)
+        }
+
+        .lc-label.civil {
+            color: var(--civil)
+        }
+
+        .lc-label.elet {
+            color: var(--elet)
+        }
+
+        /* WA STEPS */
+        .wa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px
+        }
+
+        .wa-s {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 13px 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px
+        }
+
+        .wn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            background: var(--s2);
+            border: 1px solid var(--border2);
+            padding: 2px 7px;
+            border-radius: 3px;
+            color: var(--muted2);
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .wl {
+            flex: 1;
+            color: var(--text);
+            font-size: 12px;
+            line-height: 1.6
+        }
+
+        .wt {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .wt.go {
+            background: rgba(74, 222, 128, .1);
+            color: var(--sst);
+            border: 1px solid rgba(74, 222, 128, .25)
+        }
+
+        .wt.wk {
+            background: rgba(34, 211, 238, .08);
+            color: var(--accent);
+            border: 1px solid rgba(34, 211, 238, .2)
+        }
+
+        .wt.db {
+            background: var(--shb);
+            color: var(--sh);
+            border: 1px solid rgba(167, 139, 250, .25)
+        }
+
+        /* DIFF LIST */
+        .diff-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .dl {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 16px 18px;
+            display: flex;
+            gap: 13px
+        }
+
+        .dl-ic {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            background: var(--s2);
+            border: 1px solid var(--border2)
+        }
+
+        .dl h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .dl p {
+            font-size: 11px;
+            color: var(--muted2);
+            line-height: 1.6
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.8;
+            letter-spacing: 1px
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hdr">
+        <div class="hdr-tag">DOCUMENTO TÉCNICO — v1.0</div>
+        <h1>Engi<span class="s">F</span><span class="c">l</span><span class="e">o</span>w</h1>
+        <p>Arquitetura completa: infra, stack, módulos, fluxos por especialidade, modelo de dados e WhatsApp. Cobre SST,
+            Civil e Elétrica.</p>
+        <div class="hdr-meta">
+            <div><span>STACK:</span> React · TS · CF Workers · D1 · R2 · Go · whatsmeow</div>
+            <div><span>DOMÍNIO:</span> B2B Multi-especialidade</div>
+        </div>
+        <div class="spec-legend">
+            <div class="sl sst">
+                <div class="dot"></div>SST
+            </div>
+            <div class="sl civil">
+                <div class="dot"></div>CIVIL
+            </div>
+            <div class="sl elet">
+                <div class="dot"></div>ELÉTRICA
+            </div>
+            <div class="sl sh">
+                <div class="dot"></div>SHARED
+            </div>
+        </div>
+    </div>
+
+    <div class="pg">
+
+        <!-- 01 INFRA -->
+        <div class="sec">
+            <div class="sec-lbl">01 — INFRAESTRUTURA</div>
+            <h2>Decisão de Stack e Hospedagem</h2>
+            <p>Duas zonas: Cloudflare (edge-native, zero ops de servidor) e VPS apenas para o bridge WhatsApp
+                persistente. O VPS não carrega API, banco ou front.</p>
+            <div class="infra-list">
+                <div class="ic">
+                    <h3>☁ Cloudflare Pages</h3>
+                    <div class="sub">FRONTEND — REACT + TS</div>
+                    <ul>
+                        <li>Dashboard interno (painel operacional)</li>
+                        <li>Portal do cliente (subdomínio separado)</li>
+                        <li>Deploy automático via Git / CDN global</li>
+                        <li>Build por especialidade via feature flags</li>
+                    </ul><span class="badge cf">CF PAGES</span>
+                </div>
+                <div class="ic">
+                    <h3>⚡ Cloudflare Workers</h3>
+                    <div class="sub">API — TYPESCRIPT EDGE</div>
+                    <ul>
+                        <li>API REST modular por especialidade</li>
+                        <li>Autenticação JWT + RBAC multi-papel</li>
+                        <li>Scheduled Worker: motor de vencimentos (cron)</li>
+                        <li>Geração de PDF (certificados e laudos)</li>
+                        <li>Integração nativa D1 / KV / R2</li>
+                    </ul><span class="badge cf">CF WORKERS</span>
+                </div>
+                <div class="ic vps">
+                    <h3>🟣 VPS Dedicado</h3>
+                    <div class="sub">WHATSAPP BRIDGE — GO</div>
+                    <ul>
+                        <li>Go + whatsmeow — cliente WA Web</li>
+                        <li>Processo contínuo (sessão persistente)</li>
+                        <li>Recebe mensagem → POST para Worker API</li>
+                        <li>SQLite local para sessão WA</li>
+                        <li>~R$40/mês, 2GB RAM é suficiente</li>
+                    </ul><span class="badge vps">VPS — GO</span>
+                </div>
+                <div class="ic">
+                    <h3>🗄 Cloudflare D1</h3>
+                    <div class="sub">BANCO — SQLite MANAGED</div>
+                    <ul>
+                        <li>Banco principal de todas as especialidades</li>
+                        <li>Migrations com Drizzle ORM</li>
+                        <li>Acesso nativo dentro do Worker</li>
+                        <li>Backups automáticos gerenciados</li>
+                    </ul><span class="badge cf">CF D1</span>
+                </div>
+                <div class="ic">
+                    <h3>📦 Cloudflare R2</h3>
+                    <div class="sub">STORAGE — ARQUIVOS</div>
+                    <ul>
+                        <li>Certificados PDF (SST), laudos (Elétrica)</li>
+                        <li>Plantas e memoriais (Civil)</li>
+                        <li>Evidências fotográficas e ARTs</li>
+                        <li>Zero custo de egresso</li>
+                    </ul><span class="badge cf">CF R2</span>
+                </div>
+            </div>
+            <div class="note"><strong>Por que D1 e não PostgreSQL?</strong> Para B2B multi-especialidade em escala
+                inicial/média, D1 elimina todo overhead de ops — zero backups manuais, zero tuning, acesso direto no
+                Worker. Migração via Hyperdrive disponível se necessário.</div>
+            <div class="warn"><strong>VPS obrigatório apenas para WA:</strong> whatsmeow precisa de WebSocket
+                persistente — Workers são stateless. VPS leve (~2GB RAM) resolve. Nada mais roda no VPS.</div>
+        </div>
+
+        <hr>
+
+        <!-- 02 STACK -->
+        <div class="sec">
+            <div class="sec-lbl">02 — STACK</div>
+            <h2>Decisões Técnicas por Camada</h2>
+            <div class="tbl-wrap">
+                <table class="stk">
+                    <tr>
+                        <th>CAMADA</th>
+                        <th>TECNOLOGIA</th>
+                        <th>JUSTIFICATIVA</th>
+                    </tr>
+                    <tr>
+                        <td>Frontend painel</td>
+                        <td class="tech">React + TS + Vite</td>
+                        <td class="reason">Dashboard multi-especialidade com tabs e estado previsível.</td>
+                    </tr>
+                    <tr>
+                        <td>Frontend portal</td>
+                        <td class="tech">React + TS + Vite</td>
+                        <td class="reason">Subdomínio separado, auth própria, mesma base de componentes.</td>
+                    </tr>
+                    <tr>
+                        <td>API / Backend</td>
+                        <td class="tech">CF Workers (TS)</td>
+                        <td class="reason">Edge-native, sem servidor, deploy automático, D1/KV/R2 nativo.</td>
+                    </tr>
+                    <tr>
+                        <td>Banco de dados</td>
+                        <td class="tech">CF D1 (SQLite)</td>
+                        <td class="reason">Gerenciado, zero ops, Drizzle ORM para migrations tipadas.</td>
+                    </tr>
+                    <tr>
+                        <td>Armazenamento</td>
+                        <td class="tech">CF R2</td>
+                        <td class="reason">PDFs, laudos, fotos, ARTs. URLs assinadas. Zero egresso.</td>
+                    </tr>
+                    <tr>
+                        <td>WA Bridge</td>
+                        <td class="tech">Go + whatsmeow</td>
+                        <td class="reason">Sessão WA persistente exige processo contínuo. whatsmeow é o mais estável.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Geração de docs</td>
+                        <td class="tech">PDFLib WASM</td>
+                        <td class="reason">Certs SST e laudos gerados no Worker, salvos no R2.</td>
+                    </tr>
+                    <tr>
+                        <td>Motor vencimentos</td>
+                        <td class="tech">Scheduled Worker</td>
+                        <td class="reason">Cron diário, varre D1, dispara ações e alertas por especialidade.</td>
+                    </tr>
+                    <tr>
+                        <td>Autenticação</td>
+                        <td class="tech">JWT + CF KV</td>
+                        <td class="reason">RBAC: admin, operador, instrutor, engenheiro, cliente.</td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td class="tech">Resend</td>
+                        <td class="reason">Alertas, confirmações, envio de documentos. Integra com Workers.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 03 MÓDULOS -->
+        <div class="sec">
+            <div class="sec-lbl">03 — MÓDULOS</div>
+            <h2>Estrutura de Módulos</h2>
+            <p>Módulo de núcleo compartilhado (CRM, financeiro, documentos) + módulos específicos por especialidade.
+                Cada módulo tem suas rotas de API e tabelas próprias no D1.</p>
+            <div class="mod-list">
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--sh)"></div>
+                        <h4>CRM Unificado</h4><span class="stag all">TODAS</span>
+                    </div>
+                    <ul>
+                        <li>Empresa / cliente B2B (matriz + filiais)</li>
+                        <li>Pipeline por especialidade</li>
+                        <li>Histórico de interações e oportunidades</li>
+                        <li>Origem do lead (WA, site, indicação)</li>
+                    </ul>
+                </div>
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--sst)"></div>
+                        <h4>Turmas e Certificados</h4><span class="stag sst">SST</span>
+                    </div>
+                    <ul>
+                        <li>Turmas in company e abertas por NR</li>
+                        <li>Instrutor + local + vagas</li>
+                        <li>Presença por participante</li>
+                        <li>Certificado PDF com QR code automático</li>
+                        <li>Validade e reciclagem registradas</li>
+                    </ul>
+                </div>
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--civil)"></div>
+                        <h4>Projetos e Obras</h4><span class="stag civil">CIVIL</span>
+                    </div>
+                    <ul>
+                        <li>Ordem de serviço por cliente</li>
+                        <li>Cronograma com etapas e dependências</li>
+                        <li>Execução: fotos e evidências</li>
+                        <li>Medição aprovada → cobrança disparada</li>
+                    </ul>
+                </div>
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--elet)"></div>
+                        <h4>Laudos e Vistorias</h4><span class="stag elet">ELÉTRICA</span>
+                    </div>
+                    <ul>
+                        <li>Vistoria com checklist técnico</li>
+                        <li>Laudo com template por serviço</li>
+                        <li>Aceite técnico → cobrança disparada</li>
+                        <li>Validade do laudo monitorada (cron)</li>
+                    </ul>
+                </div>
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--sst)"></div>
+                        <h4>Motor de Renovação</h4><span class="stag sst">SST</span>
+                    </div>
+                    <ul>
+                        <li>Cron diário: varre todos os certificados</li>
+                        <li>Radar: vencido / 7d / 30d / 60d</li>
+                        <li>Alerta WA / e-mail + proposta automática</li>
+                        <li>Score de conformidade por empresa</li>
+                    </ul>
+                </div>
+                <div class="mod">
+                    <div class="mod-hd">
+                        <div class="dot" style="background:var(--sh)"></div>
+                        <h4>Financeiro Integrado</h4><span class="stag all">TODAS</span>
+                    </div>
+                    <ul>
+                        <li>Proposta → contrato → cobrança por área</li>
+                        <li>Gatilho automático: etapa concluída → fatura</li>
+                        <li>Contas a receber por especialidade</li>
+                        <li>Receita recorrente por renovação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 04 FLUXOS -->
+        <div class="sec">
+            <div class="sec-lbl">04 — FLUXOS</div>
+            <h2>Fluxos Operacionais</h2>
+            <p>Role os fluxos horizontalmente. Cada transição de estado gera evento rastreado no D1 com timestamp e
+                usuário responsável.</p>
+
+            <div class="flow-blk">
+                <h3><span class="fn sst">S</span>SST — Turma ao certificado</h3>
+                <div class="desc">Pós-contrato: operação completa com geração automática de certificados.</div>
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <div class="fb sst"><span class="sn">TURMA</span>Criada + instrutor</div><span
+                            class="fa">→</span>
+                        <div class="fb sst"><span class="sn">LISTA</span>Participantes</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">LEMBRETE</span>WA automático</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">PRESENÇA</span>Registrada</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">REALIZADA</span>Status ok</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">COBRANÇA</span>Liberada</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">CERT.</span>PDF no R2</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">VALIDADE</span>Cron monit.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-blk">
+                <h3><span class="fn sst">S</span>SST — Motor de renovação (cron diário)</h3>
+                <div class="desc">Roda sem intervenção. Transforma vencimento em oportunidade comercial.</div>
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <div class="fb sst"><span class="sn">CRON</span>Worker dispara</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">VARREDURA</span>D1 certs.</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">RADAR</span>7d/30d/60d</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">ALERTA</span>WA + e-mail</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">CRM</span>Oportunidade</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">TAREFA</span>Follow-up</div><span class="fa">→</span>
+                        <div class="fb sst"><span class="sn">VENDA</span>Nova proposta</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-blk">
+                <h3><span class="fn civil">C</span>Civil — Proposta à medição faturada</h3>
+                <div class="desc">Medição aprovada gera cobrança automaticamente — sem intervenção do financeiro.</div>
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <div class="fb civil"><span class="sn">LEAD</span>CRM</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">VISITA</span>Técnica</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">CONTRATO</span>ART emitida</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">CRONOGRAMA</span>Etapas</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">EXECUÇÃO</span>Evidências</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">MEDIÇÃO</span>Aprovada</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">COBRANÇA</span>Automática</div><span class="fa">→</span>
+                        <div class="fb civil"><span class="sn">ENTREGA</span>Pós-obra</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-blk">
+                <h3><span class="fn elet">E</span>Elétrica — Vistoria ao aceite faturado</h3>
+                <div class="desc">Aceite técnico assinado libera a fatura automaticamente.</div>
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <div class="fb elet"><span class="sn">LEAD</span>CRM</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">VISTORIA</span>Checklist</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">LAUDO</span>R2</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">ART</span>Vinculada</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">EXECUÇÃO</span>Testes</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">ACEITE</span>Cliente</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">FATURA</span>Automática</div><span class="fa">→</span>
+                        <div class="fb elet"><span class="sn">VALIDADE</span>Monit.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-blk">
+                <h3><span class="fn sh">W</span>WhatsApp — Mensagem ao lead estruturado</h3>
+                <div class="desc">Qualquer especialidade pode ter lead gerado via WA. O Worker classifica e rota para o
+                    pipeline correto.</div>
+                <div class="flow-scroll">
+                    <div class="flow-row">
+                        <div class="fb sh"><span class="sn">WA BRIDGE</span>Mensagem Go</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">PARSE</span>Número+intent</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">WORKER</span>POST inbound</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">D1</span>Lead/contato</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">CLASS.</span>SST/Civil/Elet</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">CRM</span>Pipeline</div><span class="fa">→</span>
+                        <div class="fb sh"><span class="sn">RESPOSTA</span>Bot WA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 05 DADOS -->
+        <div class="sec">
+            <div class="sec-lbl">05 — DADOS</div>
+            <h2>Entidades Principais</h2>
+            <p>Todas compartilham a entidade EMPRESA do CRM central. Nenhuma ação importante acontece sem registro
+                rastreável.</p>
+            <div class="ent-list">
+                <div class="ent">
+                    <div class="ent-h sh">EMPRESA (shared)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">id</span><span class="ft">uuid</span></div>
+                        <div class="ef"><span class="fn2">nome / cnpj</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">especialidade_ativa</span><span class="ft">json[]</span></div>
+                        <div class="ef"><span class="fn2">status_crm</span><span class="ft">enum</span></div>
+                        <div class="ef"><span class="fn2">portal_token</span><span class="ft">text</span></div>
+                    </div>
+                </div>
+                <div class="ent">
+                    <div class="ent-h sst">TURMA (SST)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">empresa_id</span><span class="ft">→ EMPRESA</span></div>
+                        <div class="ef"><span class="fn2">treinamento_nr</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">instrutor_id</span><span class="ft">→ USUARIO</span></div>
+                        <div class="ef"><span class="fn2">status</span><span class="ft">enum</span></div>
+                        <div class="ef"><span class="fn2">cobranca_id</span><span class="ft">→ COBRANÇA</span></div>
+                    </div>
+                </div>
+                <div class="ent">
+                    <div class="ent-h sst">CERTIFICADO (SST)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">participante_id</span><span class="ft">→ PART.</span></div>
+                        <div class="ef"><span class="fn2">r2_url</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">qr_hash</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">validade_ate</span><span class="ft">timestamp</span></div>
+                        <div class="ef"><span class="fn2">nr_vinculada</span><span class="ft">text</span></div>
+                    </div>
+                </div>
+                <div class="ent">
+                    <div class="ent-h civil">PROJETO (Civil)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">empresa_id</span><span class="ft">→ EMPRESA</span></div>
+                        <div class="ef"><span class="fn2">tipo_obra</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">responsavel</span><span class="ft">→ USER</span></div>
+                        <div class="ef"><span class="fn2">status</span><span class="ft">enum</span></div>
+                        <div class="ef"><span class="fn2">art_id</span><span class="ft">→ DOC</span></div>
+                    </div>
+                </div>
+                <div class="ent">
+                    <div class="ent-h civil">MEDIÇÃO (Civil)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">projeto_id</span><span class="ft">→ PROJETO</span></div>
+                        <div class="ef"><span class="fn2">valor</span><span class="ft">decimal</span></div>
+                        <div class="ef"><span class="fn2">aprovada_em</span><span class="ft">timestamp</span></div>
+                        <div class="ef"><span class="fn2">cobranca_id</span><span class="ft">→ COBR.</span></div>
+                    </div>
+                </div>
+                <div class="ent">
+                    <div class="ent-h elet">LAUDO (Elétrica)</div>
+                    <div class="ent-b">
+                        <div class="ef"><span class="fn2">empresa_id</span><span class="ft">→ EMPRESA</span></div>
+                        <div class="ef"><span class="fn2">tipo_laudo</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">r2_url</span><span class="ft">text</span></div>
+                        <div class="ef"><span class="fn2">validade_ate</span><span class="ft">timestamp</span></div>
+                        <div class="ef"><span class="fn2">qr_hash</span><span class="ft">text</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 06 LIFECYCLE -->
+        <div class="sec">
+            <div class="sec-lbl">06 — ESTADOS</div>
+            <h2>Lifecycle por Especialidade</h2>
+            <p>Role horizontalmente para ver todos os estados. Cada transição é rastreada com quem, quando e motivo.</p>
+
+            <div class="lc-label sst">SST — TURMA</div>
+            <div class="lc-scroll">
+                <div class="lc">
+                    <div class="lc-s sst">
+                        <div class="li">📋</div>
+                        <div class="ln">AGENDADA</div>
+                        <div class="ld">Data e instrutor definidos</div>
+                    </div>
+                    <div class="lc-s sst">
+                        <div class="li">✅</div>
+                        <div class="ln">CONFIRMADA</div>
+                        <div class="ld">Lista fechada</div>
+                    </div>
+                    <div class="lc-s sst">
+                        <div class="li">🎓</div>
+                        <div class="ln">EM ANDAMENTO</div>
+                        <div class="ld">Presença aberta</div>
+                    </div>
+                    <div class="lc-s sst">
+                        <div class="li">📄</div>
+                        <div class="ln">REALIZADA</div>
+                        <div class="ld">Cobrança liberada</div>
+                    </div>
+                    <div class="lc-s sst">
+                        <div class="li">🏅</div>
+                        <div class="ln">CERTIFICADA</div>
+                        <div class="ld">PDFs gerados</div>
+                    </div>
+                    <div class="lc-s cancel">
+                        <div class="li">❌</div>
+                        <div class="ln">CANCELADA</div>
+                        <div class="ld">Motivo registrado</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lc-label civil">CIVIL — PROJETO</div>
+            <div class="lc-scroll">
+                <div class="lc">
+                    <div class="lc-s civil">
+                        <div class="li">📐</div>
+                        <div class="ln">PROPOSTA</div>
+                        <div class="ld">Escopo definido</div>
+                    </div>
+                    <div class="lc-s civil">
+                        <div class="li">📝</div>
+                        <div class="ln">CONTRATO</div>
+                        <div class="ld">ART emitida</div>
+                    </div>
+                    <div class="lc-s civil">
+                        <div class="li">⚙️</div>
+                        <div class="ln">EM EXECUÇÃO</div>
+                        <div class="ld">Etapas ativas</div>
+                    </div>
+                    <div class="lc-s civil">
+                        <div class="li">📏</div>
+                        <div class="ln">MEDIÇÃO</div>
+                        <div class="ld">Aprovada</div>
+                    </div>
+                    <div class="lc-s civil">
+                        <div class="li">💰</div>
+                        <div class="ln">FATURADO</div>
+                        <div class="ld">Cobrança automática</div>
+                    </div>
+                    <div class="lc-s civil">
+                        <div class="li">🏗️</div>
+                        <div class="ln">ENTREGUE</div>
+                        <div class="ld">Pós-obra</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lc-label elet">ELÉTRICA — SERVIÇO</div>
+            <div class="lc-scroll">
+                <div class="lc">
+                    <div class="lc-s elet">
+                        <div class="li">🔍</div>
+                        <div class="ln">VISTORIA</div>
+                        <div class="ld">Checklist</div>
+                    </div>
+                    <div class="lc-s elet">
+                        <div class="li">📋</div>
+                        <div class="ln">LAUDO</div>
+                        <div class="ld">PDF no R2</div>
+                    </div>
+                    <div class="lc-s elet">
+                        <div class="li">🔧</div>
+                        <div class="ln">EXECUÇÃO</div>
+                        <div class="ld">Testes ativos</div>
+                    </div>
+                    <div class="lc-s elet">
+                        <div class="li">✔️</div>
+                        <div class="ln">ACEITE</div>
+                        <div class="ld">Cliente confirma</div>
+                    </div>
+                    <div class="lc-s elet">
+                        <div class="li">💰</div>
+                        <div class="ln">FATURADO</div>
+                        <div class="ld">Fatura automática</div>
+                    </div>
+                    <div class="lc-s elet">
+                        <div class="li">⏰</div>
+                        <div class="ln">EM VALIDADE</div>
+                        <div class="ld">Cron monit.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 07 WHATSAPP -->
+        <div class="sec">
+            <div class="sec-lbl">07 — WHATSAPP</div>
+            <h2>Bridge WhatsApp — Detalhamento</h2>
+            <p>O bridge Go roda no VPS como processo contínuo. Sem lógica de negócio — apenas recebe/envia mensagens e
+                chama a Worker API por HTTPS autenticado por HMAC.</p>
+            <div class="wa-list">
+                <div class="wa-s">
+                    <div class="wn">01</div>
+                    <div class="wl">whatsmeow mantém WebSocket persistente com servidores WA Web. Recebe qualquer
+                        mensagem.</div>
+                    <div class="wt go">VPS Go</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">02</div>
+                    <div class="wl">Bridge extrai número, texto, timestamp, tipo. Monta payload JSON.</div>
+                    <div class="wt go">parser</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">03</div>
+                    <div class="wl">POST para /api/wa/inbound no Worker. Autenticado por HMAC secret compartilhado.
+                    </div>
+                    <div class="wt wk">HTTPS</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">04</div>
+                    <div class="wl">Worker busca número no D1. Novo → cria lead. Existente → atualiza último contato.
+                    </div>
+                    <div class="wt db">D1</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">05</div>
+                    <div class="wl">Classifica especialidade: SST (treinamento/cert.), Civil (obra), Elétrica (laudo).
+                        Rota ao pipeline correto.</div>
+                    <div class="wt wk">logic</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">06</div>
+                    <div class="wl">Worker envia resposta para /api/wa/send no bridge Go. Bridge entrega via whatsmeow.
+                    </div>
+                    <div class="wt go">→ WA</div>
+                </div>
+                <div class="wa-s">
+                    <div class="wn">07</div>
+                    <div class="wl">Evento registrado no D1. Painel exibe interação. Lead novo: alerta CRM por
+                        especialidade.</div>
+                    <div class="wt db">log</div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 08 DIFERENCIAIS -->
+        <div class="sec">
+            <div class="sec-lbl">08 — DIFERENCIAIS</div>
+            <h2>O que torna a plataforma inovadora</h2>
+            <div class="diff-list">
+                <div class="dl">
+                    <div class="dl-ic">🔀</div>
+                    <div>
+                        <h4>Fluxo automático por especialidade</h4>
+                        <p>Sistema detecta o tipo de serviço e abre checklist, etapas e documentos corretos. Zero
+                            adaptação manual.</p>
+                    </div>
+                </div>
+                <div class="dl">
+                    <div class="dl-ic">⚡</div>
+                    <div>
+                        <h4>Financeiro por gatilho operacional</h4>
+                        <p>Medição → cobrança. Turma realizada → fatura. Aceite técnico → conta a receber. O financeiro
+                            reage à operação.</p>
+                    </div>
+                </div>
+                <div class="dl">
+                    <div class="dl-ic">🔄</div>
+                    <div>
+                        <h4>Motor de renovação multi-especialidade</h4>
+                        <p>Um cron que monitora certs SST, laudos elétricos e inspeções civis. Qualquer vencimento gera
+                            alerta + oportunidade.</p>
+                    </div>
+                </div>
+                <div class="dl">
+                    <div class="dl-ic">🔍</div>
+                    <div>
+                        <h4>QR code de verificação em documentos</h4>
+                        <p>Cert SST e laudos elétricos com QR único. Auditoria escaneia e confirma. Hash no D1 — sem
+                            terceiro.</p>
+                    </div>
+                </div>
+                <div class="dl">
+                    <div class="dl-ic">📊</div>
+                    <div>
+                        <h4>Score de conformidade por empresa</h4>
+                        <p>0 a 100 por empresa: treinados, vencidos e pendentes por função e filial. Visível no portal —
+                            cria urgência.</p>
+                    </div>
+                </div>
+                <div class="dl">
+                    <div class="dl-ic">🌐</div>
+                    <div>
+                        <h4>Portal self-service por especialidade</h4>
+                        <p>Certs SST, laudos elétricos, status civil — sem ligar. Reduz atendimento manual em 60%+.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">ENGIFLOW — DOCUMENTO TÉCNICO v1.0 · SST · CIVIL · ELÉTRICA · CONFIDENCIAL</div>
+</body>
+
+</html>
